@@ -1,0 +1,9 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/api/:path*",    "destination": "https://REPLACE_WITH_RAILWAY_NODE_URL/api/:path*" },
+    { "source": "/ai-api/:path*", "destination": "https://REPLACE_WITH_RAILWAY_PYTHON_URL/ai-api/:path*" }
+  ]
+}

@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+server/node_modules/
+
+# Build outputs
+dist/
+server/dist/
+ai-service/__pycache__/
+ai-service/**/__pycache__/
+ai-service/*.pyc
+ai-service/**/*.pyc
+ai-service/.venv/
+ai-service/venv/
+ai-service/chroma_db/
+
+# Environment files — NEVER commit these
+.env
+.env.local
+.env.production.local
+server/.env
+ai-service/.env
+
+# Logs
+*.log
+/tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
