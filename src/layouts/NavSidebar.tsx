@@ -137,6 +137,14 @@ export default function NavSidebar() {
         <span>AI FinOps</span>
       </button>
 
+      <button
+        className={`nav-item ${pathname === '/architecture' ? 'active' : ''}`}
+        onClick={() => navigate('/architecture')}
+      >
+        <Network size={14} color={pathname === '/architecture' ? 'var(--cyan)' : undefined} />
+        <span>Architecture</span>
+      </button>
+
       <div className="nav-section-label">Other</div>
 
       <button className="nav-item disabled" disabled>

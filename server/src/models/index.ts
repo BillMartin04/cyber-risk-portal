@@ -745,3 +745,120 @@ export interface AccessReviewItem {
   recommended: AccessLevel;
   reason:      string;
 }
+
+// ─── Level 5 Architecture types ────────────────────────────────────────────
+export type AgentStatus    = 'active' | 'sandboxed' | 'retired' | 'under-review';
+export type AgentFramework = 'langgraph' | 'langchain' | 'custom' | 'openai-assistant' | 'autogen';
+export type OversightLevel = 'full' | 'partial' | 'minimal' | 'autonomous';
+export type ToolCategory   = 'read' | 'write' | 'execute' | 'communicate';
+
+export interface AgentTool {
+  name:      string;
+  category:  ToolCategory;
+  riskLevel: 'low' | 'medium' | 'high' | 'critical';
+}
+
+export interface AIAgent {
+  id:               string;
+  name:             string;
+  description:      string;
+  framework:        AgentFramework;
+  status:           AgentStatus;
+  riskTier:         'low' | 'medium' | 'high' | 'critical';
+  humanOversight:   OversightLevel;
+  tools:            AgentTool[];
+  permissions:      string[];
+  dataSources:      string[];
+  outputChannels:   string[];
+  maxTokenBudget:   number;
+  avgTokensPerRun:  number;
+  runsLast30Days:   number;
+  owner:            string;
+  deployedDate:     string;
+  lastAudit:        string;
+  containmentPolicy: string;
+  isolationLevel:   'full' | 'partial' | 'none';
+}
+
+export type RAGSourceType  = 'vector-db' | 'document-store' | 'live-api' | 'database' | 'web-scrape';
+export type InjectionRisk  = 'high' | 'medium' | 'low' | 'mitigated';
+
+export interface RAGDataSource {
+  id:                  string;
+  name:                string;
+  type:                RAGSourceType;
+  classification:      'public' | 'internal' | 'confidential' | 'restricted';
+  riskLevel:           'low' | 'medium' | 'high' | 'critical';
+  injectionRisk:       InjectionRisk;
+  documentsIndexed:    number;
+  lastUpdated:         string;
+  accessControl:       string;
+  poisoningDetected:   boolean;
+  anomalousQueries30d: number;
+  linkedAgents:        string[];
+}
+
+export interface RAGConsoleStats {
+  totalSources:      number;
+  criticalRisk:      number;
+  poisoningAlerts:   number;
+  anomalousQueries:  number;
+  totalDocuments:    number;
+}
+
+export type ModelOrigin      = 'commercial-api' | 'open-source' | 'fine-tuned' | 'proprietary';
+export type ProvenanceStatus = 'verified' | 'unverified' | 'flagged' | 'under-review';
+export type DriftStatus      = 'stable' | 'drifting' | 'significant-drift' | 'unknown';
+export type EUAIActRisk      = 'minimal' | 'limited' | 'high' | 'unacceptable';
+
+export interface ModelProvenance {
+  id:                  string;
+  modelName:           string;
+  vendor:              string;
+  version:             string;
+  origin:              ModelOrigin;
+  provenanceStatus:    ProvenanceStatus;
+  trainingDataSummary: string;
+  knownBiases:         string[];
+  evaluationScore:     number;
+  driftStatus:         DriftStatus;
+  lastEvaluated:       string;
+  supplyChainRisk:     'low' | 'medium' | 'high' | 'critical';
+  certifications:      string[];
+  usedByAgents:        string[];
+  euAIActRisk:         EUAIActRisk;
+}
+
+export type ContainmentStatus    = 'active' | 'bypassed' | 'failed' | 'testing';
+export type CircuitBreakerState  = 'closed' | 'open' | 'half-open';
+export type ContainmentBoundaryType = 'network' | 'data' | 'compute' | 'output' | 'temporal';
+
+export interface ContainmentBoundary {
+  id:               string;
+  name:             string;
+  type:             ContainmentBoundaryType;
+  status:           ContainmentStatus;
+  agentsAppliedTo:  string[];
+  description:      string;
+  blastRadius:      string;
+  lastTested:       string;
+  circuitBreaker:   CircuitBreakerState;
+  violations30d:    number;
+}
+
+export interface ContainmentStats {
+  totalBoundaries:          number;
+  activeBoundaries:         number;
+  bypassedBoundaries:       number;
+  totalViolations:          number;
+  criticalAgentsContained:  number;
+}
+
+export interface ArchitectureData {
+  agents:               AIAgent[];
+  ragSources:           RAGDataSource[];
+  ragStats:             RAGConsoleStats;
+  models:               ModelProvenance[];
+  containmentBoundaries: ContainmentBoundary[];
+  containmentStats:     ContainmentStats;
+}

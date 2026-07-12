@@ -92,6 +92,13 @@ export function getSuggestedPrompts(page: string): SuggestedPrompt[] {
         { label: 'Queue health summary',        prompt: 'Summarise the current state of the approval queue including backlog, average resolution time and risk exposure from pending items.', action: 'summarize' },
         { label: 'Governance compliance check', prompt: 'Are the proposed agentic actions consistent with our governance policies and risk appetite?',               action: 'compliance-check' },
       ];
+    case 'architecture':
+      return [
+        { label: 'Agent risk summary',         prompt: 'Summarise the risk posture of our AI agent inventory, highlighting sandboxed, under-review, and critical-tier agents.', action: 'risk-deep-dive' },
+        { label: 'RAG poisoning response',     prompt: 'Our External Threat Intel RAG source has detected poisoning. What are the containment and remediation steps we should follow?', action: 'recommend-controls' },
+        { label: 'Model provenance gaps',      prompt: 'Identify models with flagged provenance or significant drift and explain the governance risk they create.', action: 'analyze-controls' },
+        { label: 'Circuit breaker status',     prompt: 'Our Human Approval Gate circuit breaker is half-open. What does this mean and what actions should we take?', action: 'policy-guidance' },
+      ];
     case 'scoring':
       return [
         { label: 'Explain composite score',    prompt: 'Explain why the composite risk score is at its current level and what is driving it highest.', action: 'risk-deep-dive' },
