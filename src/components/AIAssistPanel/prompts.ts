@@ -64,6 +64,13 @@ export function getSuggestedPrompts(page: string): SuggestedPrompt[] {
         { label: 'MFA coverage gaps',          prompt: 'Summarise MFA coverage gaps and the risk they create.',                        action: 'summarize' },
         { label: 'Privileged access risk',     prompt: 'Analyse the risk from privileged accounts and recommend controls.',             action: 'recommend-controls' },
       ];
+    case 'data-sovereignty':
+      return [
+        { label: 'Critical sovereignty risks', prompt: 'Explain the critical data sovereignty risks and what actions are needed immediately.',    action: 'risk-deep-dive' },
+        { label: 'GDPR compliance gaps',        prompt: 'Which AI tools are non-compliant or unknown under GDPR and what is the exposure?',       action: 'compliance-check' },
+        { label: 'Cross-border flow risk',      prompt: 'Assess the risk from cross-border data transfers across our AI tools.',                  action: 'analyze-controls' },
+        { label: 'Residency recommendations',   prompt: 'Recommend data residency controls and improvements for our highest-risk AI tools.',      action: 'recommend-controls' },
+      ];
     case 'ai-registry':
       return [
         { label: 'Prohibited tools risk',      prompt: 'Explain the risk implications of our prohibited AI tools and why they were banned.', action: 'risk-deep-dive' },

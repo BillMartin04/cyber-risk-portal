@@ -47,6 +47,49 @@ export interface AIRegistryStats {
   totalMonthlyCost: number;
   totalMonthlyUsers: number;
 }
+// ─── Data Sovereignty types ────────────────────────────────────────────────
+export type SovereigntyRisk  = 'critical' | 'high' | 'medium' | 'low' | 'none';
+export type ComplianceStatus = 'compliant' | 'non-compliant' | 'adequate' | 'unknown';
+export type DataRegion       = 'us' | 'eu' | 'uk' | 'apac' | 'cn' | 'unknown';
+
+export interface DataSovereigntyCompliance {
+  gdpr:   ComplianceStatus;
+  ccpa:   ComplianceStatus;
+  apra:   ComplianceStatus;
+  ukGdpr: ComplianceStatus;
+}
+
+export interface DataSovereigntyEntry {
+  id:                   string;
+  toolId:               string;
+  toolName:             string;
+  vendor:               string;
+  status:               AIToolStatus;
+  dataResidency:        string;
+  region:               DataRegion;
+  processingRegions:    string[];
+  crossBorderTransfer:  boolean;
+  transferMechanisms:   string[];
+  compliance:           DataSovereigntyCompliance;
+  dataTypesProcessed:   string[];
+  retentionPeriod:      string;
+  encryptionInTransit:  boolean;
+  encryptionAtRest:     boolean;
+  thirdPartySharing:    boolean;
+  sovereigntyRisk:      SovereigntyRisk;
+  certifications:       string[];
+  notes:                string;
+}
+
+export interface DataSovereigntyStats {
+  total:              number;
+  criticalRisk:       number;
+  highRisk:           number;
+  crossBorderCount:   number;
+  gdprCompliant:      number;
+  unknownResidency:   number;
+}
+
 export type ControlStatus   = 'implemented' | 'partial' | 'not-implemented' | 'not-applicable';
 export type ControlType     = 'preventive' | 'detective' | 'corrective' | 'compensating';
 export type TrendDirection  = 'improving' | 'stable' | 'degrading';
