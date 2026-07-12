@@ -78,6 +78,13 @@ export function getSuggestedPrompts(page: string): SuggestedPrompt[] {
         { label: 'Data sovereignty gaps',      prompt: 'Identify AI tools with data residency concerns and sovereignty risk.',          action: 'analyze-controls' },
         { label: 'Registry controls review',   prompt: 'Assess the adequacy of controls across our approved AI tools.',                action: 'recommend-controls' },
       ];
+    case 'ai-finops':
+      return [
+        { label: 'Shadow AI risk brief',       prompt: 'Summarise the risk exposure from shadow AI tools including data classification concerns and regulatory implications.', action: 'risk-deep-dive' },
+        { label: 'Spend optimisation',          prompt: 'Identify opportunities to reduce AI spend by consolidating shadow AI into sanctioned equivalents.', action: 'recommend-controls' },
+        { label: 'Budget compliance check',     prompt: 'Assess whether our current AI spend allocation is compliant with our risk appetite and procurement policy.', action: 'compliance-check' },
+        { label: 'FinOps executive summary',    prompt: 'Draft an executive summary of AI investment, shadow spend risk and recommended governance actions.', action: 'report-draft' },
+      ];
     case 'approval-queue':
       return [
         { label: 'Risk-rank pending actions',  prompt: 'Rank the pending approval queue items by risk level and explain which should be prioritised for review.',  action: 'risk-deep-dive' },

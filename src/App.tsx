@@ -13,6 +13,7 @@ import AIRegistryView from './views/AIRegistryView';
 import DataSovereigntyView from './views/DataSovereigntyView';
 import ScoringView from './views/ScoringView';
 import ApprovalQueueView from './views/ApprovalQueueView';
+import AIFinOpsView from './views/AIFinOpsView';
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/data-sovereignty"  element={<DataSovereigntyView />} />
         <Route path="/scoring"           element={<ScoringView />} />
         <Route path="/approval-queue"   element={<ApprovalQueueView />} />
+        <Route path="/ai-finops"        element={<AIFinOpsView />} />
       </Route>
     </Routes>
   );

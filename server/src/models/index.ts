@@ -528,6 +528,62 @@ export interface AIGovernanceStats {
   owaspThreatsMitigated:   number;
 }
 
+// ─── AI FinOps types ────────────────────────────────────────────────────────
+export type AISpendStatus = 'sanctioned' | 'shadow';
+
+export interface AIFinOpsMonthlyTrend {
+  month:           string;   // 'Jan 2026'
+  sanctionedSpend: number;   // AUD $
+  shadowSpend:     number;
+  totalTokens:     number;   // millions
+  decisions:       number;   // risk decisions supported
+}
+
+export interface AIToolSpend {
+  toolId:        string;
+  toolName:      string;
+  vendor:        string;
+  category:      string;
+  status:        AISpendStatus;
+  department:    string;
+  monthlySpend:  number;
+  tokenUsage:    number;     // tokens/month (millions)
+  users:         number;
+  dataRiskLevel: 'low' | 'medium' | 'high' | 'critical';
+  discoveredVia?: string;    // shadow AI only
+}
+
+export interface DepartmentSpend {
+  department:      string;
+  sanctionedSpend: number;
+  shadowSpend:     number;
+  totalSpend:      number;
+  topTool:         string;
+  riskFlag:        boolean;  // true when shadow > 20% of dept spend
+}
+
+export interface AIFinOpsStats {
+  totalMonthlySpend:    number;
+  sanctionedSpend:      number;
+  shadowSpend:          number;
+  shadowPercentage:     number;
+  totalTokensThisMonth: number;  // millions
+  costPerRiskDecision:  number;
+  toolCount:            number;
+  shadowToolCount:      number;
+  departmentCount:      number;
+  budgetUtilisation:    number;  // pct of monthly budget used
+}
+
+export interface AIFinOpsData {
+  stats:               AIFinOpsStats;
+  monthlyTrend:        AIFinOpsMonthlyTrend[];
+  toolSpend:           AIToolSpend[];
+  departmentBreakdown: DepartmentSpend[];
+  reportingPeriod:     string;
+  monthlyBudget:       number;
+}
+
 // ─── Scoring Methodology types ─────────────────────────────────────────────
 export interface DomainWeight {
   domainId:       string;

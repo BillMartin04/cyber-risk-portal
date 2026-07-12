@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Shield, Database, Monitor, Code, Network,
-  Building, Cloud, Users, Cpu, Settings, BarChart3, Brain, ShieldCheck, Activity, FileCheck, UserCheck, GitBranch, ClipboardList, Globe, Calculator, ListChecks,
+  Building, Cloud, Users, Cpu, Settings, BarChart3, Brain, ShieldCheck, Activity, FileCheck, UserCheck, GitBranch, ClipboardList, Globe, Calculator, ListChecks, Coins,
   type LucideIcon,
 } from 'lucide-react';
 import { DomainService } from '../services/DomainService';
@@ -127,6 +127,14 @@ export default function NavSidebar() {
       >
         <ListChecks size={14} color={pathname === '/approval-queue' ? 'var(--cyan)' : undefined} />
         <span>Approval Queue</span>
+      </button>
+
+      <button
+        className={`nav-item ${pathname === '/ai-finops' ? 'active' : ''}`}
+        onClick={() => navigate('/ai-finops')}
+      >
+        <Coins size={14} color={pathname === '/ai-finops' ? 'var(--cyan)' : undefined} />
+        <span>AI FinOps</span>
       </button>
 
       <div className="nav-section-label">Other</div>

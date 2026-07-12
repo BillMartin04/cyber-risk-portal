@@ -657,6 +657,62 @@ export interface StartWorkflowRequest {
   context?:     Record<string, unknown>;
 }
 
+// ─── AI FinOps types ────────────────────────────────────────────────────────
+export type AISpendStatus = 'sanctioned' | 'shadow';
+
+export interface AIFinOpsMonthlyTrend {
+  month:           string;
+  sanctionedSpend: number;
+  shadowSpend:     number;
+  totalTokens:     number;
+  decisions:       number;
+}
+
+export interface AIToolSpend {
+  toolId:         string;
+  toolName:       string;
+  vendor:         string;
+  category:       string;
+  status:         AISpendStatus;
+  department:     string;
+  monthlySpend:   number;
+  tokenUsage:     number;
+  users:          number;
+  dataRiskLevel:  'low' | 'medium' | 'high' | 'critical';
+  discoveredVia?: string;
+}
+
+export interface DepartmentSpend {
+  department:      string;
+  sanctionedSpend: number;
+  shadowSpend:     number;
+  totalSpend:      number;
+  topTool:         string;
+  riskFlag:        boolean;
+}
+
+export interface AIFinOpsStats {
+  totalMonthlySpend:    number;
+  sanctionedSpend:      number;
+  shadowSpend:          number;
+  shadowPercentage:     number;
+  totalTokensThisMonth: number;
+  costPerRiskDecision:  number;
+  toolCount:            number;
+  shadowToolCount:      number;
+  departmentCount:      number;
+  budgetUtilisation:    number;
+}
+
+export interface AIFinOpsData {
+  stats:               AIFinOpsStats;
+  monthlyTrend:        AIFinOpsMonthlyTrend[];
+  toolSpend:           AIToolSpend[];
+  departmentBreakdown: DepartmentSpend[];
+  reportingPeriod:     string;
+  monthlyBudget:       number;
+}
+
 // ─── Scoring Methodology types ─────────────────────────────────────────────
 export interface DomainWeight {
   domainId:       string;
