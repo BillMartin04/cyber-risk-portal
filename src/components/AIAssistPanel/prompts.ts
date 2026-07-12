@@ -78,6 +78,13 @@ export function getSuggestedPrompts(page: string): SuggestedPrompt[] {
         { label: 'Data sovereignty gaps',      prompt: 'Identify AI tools with data residency concerns and sovereignty risk.',          action: 'analyze-controls' },
         { label: 'Registry controls review',   prompt: 'Assess the adequacy of controls across our approved AI tools.',                action: 'recommend-controls' },
       ];
+    case 'approval-queue':
+      return [
+        { label: 'Risk-rank pending actions',  prompt: 'Rank the pending approval queue items by risk level and explain which should be prioritised for review.',  action: 'risk-deep-dive' },
+        { label: 'Escalation guidance',         prompt: 'Which pending actions require escalation to senior leadership and why?',                                    action: 'policy-guidance' },
+        { label: 'Queue health summary',        prompt: 'Summarise the current state of the approval queue including backlog, average resolution time and risk exposure from pending items.', action: 'summarize' },
+        { label: 'Governance compliance check', prompt: 'Are the proposed agentic actions consistent with our governance policies and risk appetite?',               action: 'compliance-check' },
+      ];
     case 'scoring':
       return [
         { label: 'Explain composite score',    prompt: 'Explain why the composite risk score is at its current level and what is driving it highest.', action: 'risk-deep-dive' },

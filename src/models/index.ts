@@ -597,6 +597,7 @@ export interface AIApprovalItem {
   context:         Record<string, unknown>;
   created_at:      string;
   resolved_at?:    string;
+  resolved_by?:    string;
   result?:         string;
 }
 

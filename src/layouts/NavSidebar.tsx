@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Shield, Database, Monitor, Code, Network,
-  Building, Cloud, Users, Cpu, Settings, BarChart3, Brain, ShieldCheck, Activity, FileCheck, UserCheck, GitBranch, ClipboardList, Globe, Calculator,
+  Building, Cloud, Users, Cpu, Settings, BarChart3, Brain, ShieldCheck, Activity, FileCheck, UserCheck, GitBranch, ClipboardList, Globe, Calculator, ListChecks,
   type LucideIcon,
 } from 'lucide-react';
 import { DomainService } from '../services/DomainService';
@@ -119,6 +119,14 @@ export default function NavSidebar() {
       >
         <Calculator size={14} color={pathname === '/scoring' ? 'var(--cyan)' : undefined} />
         <span>Scoring</span>
+      </button>
+
+      <button
+        className={`nav-item ${pathname === '/approval-queue' ? 'active' : ''}`}
+        onClick={() => navigate('/approval-queue')}
+      >
+        <ListChecks size={14} color={pathname === '/approval-queue' ? 'var(--cyan)' : undefined} />
+        <span>Approval Queue</span>
       </button>
 
       <div className="nav-section-label">Other</div>

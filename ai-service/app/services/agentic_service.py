@@ -64,21 +64,95 @@ class AgenticServiceImpl(IAgenticService):
 
     def _seed_demo_items(self) -> None:
         demos = [
+            # Pending — Executor tier
             ApprovalQueueItem(
                 proposed_action="schedule-attestation",
                 description="Schedule quarterly control attestation for PAM domain",
-                impact="Attestation requests dispatched to 4 control owners",
+                impact="Attestation requests dispatched to 4 control owners with 10-day SLA",
                 risk_level="medium",
                 tier="executor",
-                context={"domain": "Access Management", "controls": 4},
+                status="pending",
+                context={"domain": "Identity & Access Management", "controls": 4, "due": "2026-07-25"},
             ),
+            # Pending — Analyst tier
             ApprovalQueueItem(
                 proposed_action="create-workflow",
                 description="Initiate governance workflow for Shadow AI risk issue",
                 impact="Creates tracked remediation workflow with CISO approval stage",
                 risk_level="high",
                 tier="analyst",
-                context={"risk": "Shadow AI", "priority": "P1"},
+                status="pending",
+                context={"risk": "Shadow AI Usage", "domain": "AI & Emerging Technology", "priority": "P1"},
+            ),
+            # Pending — Orchestrator tier (highest autonomy request)
+            ApprovalQueueItem(
+                proposed_action="escalate-to-board",
+                description="Escalate Third-Party & Vendor Risk domain to Board Risk Committee given score breach of 76 (Critical band)",
+                impact="Board notification issued; mandatory remediation plan required within 5 business days",
+                risk_level="critical",
+                tier="orchestrator",
+                status="pending",
+                context={"domain": "Third-Party & Vendor Risk", "score": 76, "threshold": 75, "committee": "Board Audit & Risk Committee"},
+            ),
+            # Pending — Executor tier
+            ApprovalQueueItem(
+                proposed_action="assign-risk-owner",
+                description="Assign Data Security domain residual risk owner following recent org restructure",
+                impact="Ownership gap closed; attestation cycle unblocked for Q3 2026",
+                risk_level="medium",
+                tier="executor",
+                status="pending",
+                context={"domain": "Data Security & Privacy", "gap": "unassigned since 2026-06-01"},
+            ),
+            # Approved — awaiting execution
+            ApprovalQueueItem(
+                proposed_action="generate-board-report",
+                description="Generate Q2 2026 Board cyber risk summary report with composite score trend",
+                impact="Board-ready PDF report covering all 9 domains, KRI status and top recommendations",
+                risk_level="low",
+                tier="analyst",
+                status="approved",
+                resolved_by="Sarah Chen (CISO)",
+                resolved_at="2026-07-10T09:14:22",
+                context={"period": "Q2 2026", "audience": "Board Audit & Risk Committee"},
+            ),
+            # Approved — awaiting execution
+            ApprovalQueueItem(
+                proposed_action="notify-risk-owners",
+                description="Send overdue control remediation notifications to 3 domain risk owners",
+                impact="Automated reminder emails dispatched; escalation triggered if no response in 48 hours",
+                risk_level="low",
+                tier="executor",
+                status="approved",
+                resolved_by="James Okafor (Risk Manager)",
+                resolved_at="2026-07-11T14:30:00",
+                context={"owners": 3, "overdue_controls": 7, "escalation_trigger": "48h"},
+            ),
+            # Rejected
+            ApprovalQueueItem(
+                proposed_action="auto-revoke-access",
+                description="Auto-revoke stale privileged access for 12 service accounts inactive >90 days",
+                impact="12 service account tokens revoked immediately; potential disruption to batch jobs",
+                risk_level="high",
+                tier="orchestrator",
+                status="rejected",
+                resolved_by="Wei Zhang (IAM Lead)",
+                resolved_at="2026-07-09T11:05:44",
+                result="Rejected: batch job dependency not confirmed. Manual review required before any revocation. Re-submit with confirmed dependency mapping.",
+                context={"accounts": 12, "inactive_days": 90, "domain": "Identity & Access Management"},
+            ),
+            # Executed
+            ApprovalQueueItem(
+                proposed_action="create-risk-issue",
+                description="Create formal risk issue for unpatched vulnerabilities in Application Security domain",
+                impact="Issue logged in risk register; assigned to AppSec Lead with 30-day remediation deadline",
+                risk_level="high",
+                tier="analyst",
+                status="executed",
+                resolved_by="Priya Nair (Risk Analyst)",
+                resolved_at="2026-07-08T16:22:11",
+                result="Issue RSEC-2026-047 created and assigned to Marcus Lee (AppSec Lead). Due date: 2026-08-08.",
+                context={"domain": "Application Security", "cves": 3, "severity": "High"},
             ),
         ]
         for d in demos:

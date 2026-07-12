@@ -24,6 +24,7 @@ function PageContextSync() {
     else if (pathname.startsWith('/ai-registry'))       page = 'ai-registry';
     else if (pathname.startsWith('/data-sovereignty'))  page = 'data-sovereignty';
     else if (pathname.startsWith('/scoring'))           page = 'scoring';
+    else if (pathname.startsWith('/approval-queue'))   page = 'approval-queue';
     setPageContext({ page, domainId, riskId });
   }, [pathname, domainId, riskId, setPageContext]);
 
