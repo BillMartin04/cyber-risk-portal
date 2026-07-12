@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Shield, Database, Monitor, Code, Network,
-  Building, Cloud, Users, Cpu, Settings, BarChart3, Brain, ShieldCheck, Activity, FileCheck, UserCheck, GitBranch,
+  Building, Cloud, Users, Cpu, Settings, BarChart3, Brain, ShieldCheck, Activity, FileCheck, UserCheck, GitBranch, ClipboardList,
   type LucideIcon,
 } from 'lucide-react';
 import { DomainService } from '../services/DomainService';
@@ -95,6 +95,14 @@ export default function NavSidebar() {
       >
         <GitBranch size={14} color={pathname === '/workflows' ? 'var(--purple)' : undefined} />
         <span>Workflows</span>
+      </button>
+
+      <button
+        className={`nav-item ${pathname === '/ai-registry' ? 'active' : ''}`}
+        onClick={() => navigate('/ai-registry')}
+      >
+        <ClipboardList size={14} color={pathname === '/ai-registry' ? 'var(--cyan)' : undefined} />
+        <span>AI Registry</span>
       </button>
 
       <div className="nav-section-label">Other</div>

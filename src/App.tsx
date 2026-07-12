@@ -9,6 +9,7 @@ import ResilienceView from './views/ResilienceView';
 import EvidenceView from './views/EvidenceView';
 import IdentityView from './views/IdentityView';
 import WorkflowView from './views/WorkflowView';
+import AIRegistryView from './views/AIRegistryView';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/evidence"   element={<EvidenceView />} />
         <Route path="/identities" element={<IdentityView />} />
         <Route path="/workflows"  element={<WorkflowView />} />
+        <Route path="/ai-registry" element={<AIRegistryView />} />
       </Route>
     </Routes>
   );

@@ -64,6 +64,13 @@ export function getSuggestedPrompts(page: string): SuggestedPrompt[] {
         { label: 'MFA coverage gaps',          prompt: 'Summarise MFA coverage gaps and the risk they create.',                        action: 'summarize' },
         { label: 'Privileged access risk',     prompt: 'Analyse the risk from privileged accounts and recommend controls.',             action: 'recommend-controls' },
       ];
+    case 'ai-registry':
+      return [
+        { label: 'Prohibited tools risk',      prompt: 'Explain the risk implications of our prohibited AI tools and why they were banned.', action: 'risk-deep-dive' },
+        { label: 'Pending approvals',          prompt: 'Summarise the AI tools pending approval and what security reviews are needed.', action: 'summarize' },
+        { label: 'Data sovereignty gaps',      prompt: 'Identify AI tools with data residency concerns and sovereignty risk.',          action: 'analyze-controls' },
+        { label: 'Registry controls review',   prompt: 'Assess the adequacy of controls across our approved AI tools.',                action: 'recommend-controls' },
+      ];
     default:
       return [
         { label: 'General risk summary',       prompt: 'Provide a general cyber risk summary for this view.',                           action: 'summarize' },

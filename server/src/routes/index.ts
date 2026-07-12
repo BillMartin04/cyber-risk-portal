@@ -9,6 +9,7 @@ import { workflowRouter }    from './workflow.routes';
 import { queueRouter }       from './queue.routes';
 import { aiRouter }          from './ai.routes';
 import { identityRouter }    from './identity.routes';
+import { aiRegistryRouter }  from './ai-registry.routes';
 
 export const router = Router();
 
@@ -25,3 +26,4 @@ router.use('/workflow',      workflowRouter);
 router.use('/queue',         queueRouter);
 router.use('/ai',            aiRouter);
 router.use('/identities',    identityRouter);
+router.use('/ai-registry',   aiRegistryRouter);

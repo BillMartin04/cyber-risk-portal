@@ -1,5 +1,52 @@
 // ─── Primitive types ───────────────────────────────────────────────────────
 export type RiskLevel       = 'critical' | 'high' | 'medium' | 'low';
+
+// ─── AI Registry types ─────────────────────────────────────────────────────
+export type AIToolStatus       = 'approved' | 'pending' | 'prohibited' | 'under-review' | 'retired';
+export type AIToolCategory     = 'generative-ai' | 'code-assistant' | 'data-analysis' | 'automation' | 'search-ai' | 'image-generation' | 'writing-assistant';
+export type DataClassification = 'public' | 'internal' | 'confidential' | 'restricted';
+
+export interface AIRegistryApprovalEvent {
+  date:   string;
+  action: string;
+  actor:  string;
+  note:   string;
+}
+
+export interface AIRegistryTool {
+  id:                  string;
+  name:                string;
+  vendor:              string;
+  category:            AIToolCategory;
+  status:              AIToolStatus;
+  riskRating:          RiskLevel;
+  dataClassification:  DataClassification[];
+  prohibitedDataTypes: string[];
+  businessOwner:       string;
+  department:          string;
+  useCase:             string;
+  description:         string;
+  approvedDate?:       string;
+  reviewDate:          string;
+  nextReviewDate:      string;
+  controls:            string[];
+  monthlyUsers:        number;
+  monthlyCost:         number;
+  licenseType:         string;
+  dataResidency:       string;
+  prohibitionReason?:  string;
+  approvalHistory:     AIRegistryApprovalEvent[];
+}
+
+export interface AIRegistryStats {
+  total:      number;
+  approved:   number;
+  pending:    number;
+  prohibited: number;
+  underReview: number;
+  totalMonthlyCost: number;
+  totalMonthlyUsers: number;
+}
 export type ControlStatus   = 'implemented' | 'partial' | 'not-implemented' | 'not-applicable';
 export type ControlType     = 'preventive' | 'detective' | 'corrective' | 'compensating';
 export type TrendDirection  = 'improving' | 'stable' | 'degrading';
