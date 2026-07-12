@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { Shield, Sparkles } from 'lucide-react';
 import NavSidebar from './NavSidebar';
-import { ORG_NAME, PORTAL_DATE } from '../data/cyberRiskData';
+import { PORTAL_DATE } from '../data/cyberRiskData';
 import { AIAssistProvider, useAIAssist } from '../context/AIAssistContext';
 import AIAssistPanel from '../components/AIAssistPanel/AIAssistPanel';
 
@@ -80,8 +80,8 @@ function Layout() {
         <div className="app-header-brand">
           <Shield size={18} color="var(--cyan)" strokeWidth={1.8} />
           <div>
-            <div className="app-header-title">Cyber Risk Portal</div>
-            <div className="app-header-sub">1st Line of Defense · {ORG_NAME}</div>
+            <div className="app-header-title">Lumina</div>
+            <div className="app-header-sub">CyberLens for GRC</div>
           </div>
         </div>
         <div className="app-header-meta">

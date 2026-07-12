@@ -6,7 +6,7 @@ import type {
 // ─── Risk Appetite ──────────────────────────────────────────────────────────
 
 export const RISK_APPETITE: RiskAppetite = {
-  statement: 'Your Organization maintains a LOW risk appetite for cyber risk. The Board accepts that some residual cyber risk is inherent in operating a digital financial services business, but will not tolerate risks that threaten customer data confidentiality, payment system integrity, or regulatory standing. Critical residual risks require immediate escalation and an approved remediation plan within 30 days. High risks must be actively managed with documented mitigation actions and quarterly Board reporting.',
+  statement: 'Lumina maintains a LOW risk appetite for cyber risk. The Board accepts that some residual cyber risk is inherent in operating a digital financial services business, but will not tolerate risks that threaten customer data confidentiality, payment system integrity, or regulatory standing. Critical residual risks require immediate escalation and an approved remediation plan within 30 days. High risks must be actively managed with documented mitigation actions and quarterly Board reporting.',
   overallTolerance: 'low',
   boardEndorsed:    true,
   approvedBy:       'Board Audit & Risk Committee',

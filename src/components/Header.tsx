@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ShieldCheck } from 'lucide-react';
-import { ORG_NAME, PORTAL_DATE } from '../data';
+import { PORTAL_DATE } from '../data';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -12,13 +12,10 @@ export default function Header() {
           <ShieldCheck size={18} color="#fff" strokeWidth={2.5} />
         </div>
         <div>
-          <div className="header-logo-text">Cyber Risk Portal</div>
-          <div className="header-logo-sub">1st Line Defense</div>
+          <div className="header-logo-text">Lumina</div>
+          <div className="header-logo-sub">CyberLens for GRC</div>
         </div>
       </div>
-
-      <div className="header-sep" />
-      <div className="header-org">{ORG_NAME}</div>
 
       <div className="header-spacer" />
 

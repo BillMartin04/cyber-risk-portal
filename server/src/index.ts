@@ -49,7 +49,7 @@ function seedDemoWorkflows() {
 seedDemoWorkflows();
 
 app.listen(PORT, () => {
-  console.log(`\n🚀  Cyber Risk Portal API`);
+  console.log(`\n🚀  Lumina — CyberLens for GRC (API)`);
   console.log(`   REST:   http://localhost:${PORT}/api`);
   console.log(`   Health: http://localhost:${PORT}/api/health`);
   console.log(`   AI:     ${process.env.ANTHROPIC_API_KEY ? '✅ Live (Claude API)' : '⚠️  Fallback mode (set ANTHROPIC_API_KEY)'}\n`);
