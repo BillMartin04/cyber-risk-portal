@@ -11,6 +11,7 @@ import { aiRouter }          from './ai.routes';
 import { identityRouter }    from './identity.routes';
 import { aiRegistryRouter }        from './ai-registry.routes';
 import { dataSovereigntyRouter }   from './data-sovereignty.routes';
+import { scoringRouter }           from './scoring.routes';
 
 export const router = Router();
 
@@ -29,3 +30,4 @@ router.use('/ai',            aiRouter);
 router.use('/identities',    identityRouter);
 router.use('/ai-registry',        aiRegistryRouter);
 router.use('/data-sovereignty',   dataSovereigntyRouter);
+router.use('/scoring',            scoringRouter);

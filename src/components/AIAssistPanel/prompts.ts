@@ -78,6 +78,13 @@ export function getSuggestedPrompts(page: string): SuggestedPrompt[] {
         { label: 'Data sovereignty gaps',      prompt: 'Identify AI tools with data residency concerns and sovereignty risk.',          action: 'analyze-controls' },
         { label: 'Registry controls review',   prompt: 'Assess the adequacy of controls across our approved AI tools.',                action: 'recommend-controls' },
       ];
+    case 'scoring':
+      return [
+        { label: 'Explain composite score',    prompt: 'Explain why the composite risk score is at its current level and what is driving it highest.', action: 'risk-deep-dive' },
+        { label: 'Weight recommendations',     prompt: 'Should any domain weights be adjusted given current regulatory requirements and threat landscape?', action: 'recommend-controls' },
+        { label: 'Framework gap analysis',     prompt: 'Based on our scoring, where are the largest gaps to achieve the next NIST CSF tier or DORA compliance level?', action: 'compliance-check' },
+        { label: 'Score improvement plan',     prompt: 'What specific actions would have the greatest impact on reducing our composite risk score?', action: 'recommend-controls' },
+      ];
     default:
       return [
         { label: 'General risk summary',       prompt: 'Provide a general cyber risk summary for this view.',                           action: 'summarize' },

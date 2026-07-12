@@ -655,3 +655,63 @@ export interface StartWorkflowRequest {
   createdBy:    string;
   context?:     Record<string, unknown>;
 }
+
+// ─── Scoring Methodology types ─────────────────────────────────────────────
+export interface DomainWeight {
+  domainId:       string;
+  domainName:     string;
+  weight:         number;
+  currentScore:   number;
+  weightedScore:  number;
+  color:          string;
+  rationale:      string;
+}
+
+export interface ScoreBand {
+  label:       'Critical' | 'High' | 'Medium' | 'Low';
+  min:         number;
+  max:         number;
+  color:       string;
+  description: string;
+  action:      string;
+}
+
+export interface LikelihoodImpactCell {
+  likelihood: number;
+  impact:     number;
+  rawScore:   number;
+  label:      'Critical' | 'High' | 'Medium' | 'Low';
+  color:      string;
+}
+
+export interface FrameworkRange {
+  ourScoreMin:    number;
+  ourScoreMax:    number;
+  frameworkLevel: string;
+  description:    string;
+}
+
+export interface FrameworkCalibration {
+  framework:  string;
+  version:    string;
+  ranges:     FrameworkRange[];
+}
+
+export interface ControlEffectivenessExample {
+  domain:               string;
+  inherentScore:        number;
+  controlEffectiveness: number;
+  residualScore:        number;
+}
+
+export interface ScoringMethodology {
+  compositeScore:               number;
+  compositeFormula:             string;
+  domainWeights:                DomainWeight[];
+  scoreBands:                   ScoreBand[];
+  likelihoodImpactMatrix:       LikelihoodImpactCell[];
+  controlEffectivenessFormula:  string;
+  controlExamples:              ControlEffectivenessExample[];
+  frameworkCalibrations:        FrameworkCalibration[];
+  lastUpdated:                  string;
+}

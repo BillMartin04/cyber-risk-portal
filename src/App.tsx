@@ -11,6 +11,7 @@ import IdentityView from './views/IdentityView';
 import WorkflowView from './views/WorkflowView';
 import AIRegistryView from './views/AIRegistryView';
 import DataSovereigntyView from './views/DataSovereigntyView';
+import ScoringView from './views/ScoringView';
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/workflows"  element={<WorkflowView />} />
         <Route path="/ai-registry"       element={<AIRegistryView />} />
         <Route path="/data-sovereignty"  element={<DataSovereigntyView />} />
+        <Route path="/scoring"           element={<ScoringView />} />
       </Route>
     </Routes>
   );

@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Shield, Database, Monitor, Code, Network,
-  Building, Cloud, Users, Cpu, Settings, BarChart3, Brain, ShieldCheck, Activity, FileCheck, UserCheck, GitBranch, ClipboardList, Globe,
+  Building, Cloud, Users, Cpu, Settings, BarChart3, Brain, ShieldCheck, Activity, FileCheck, UserCheck, GitBranch, ClipboardList, Globe, Calculator,
   type LucideIcon,
 } from 'lucide-react';
 import { DomainService } from '../services/DomainService';
@@ -111,6 +111,14 @@ export default function NavSidebar() {
       >
         <Globe size={14} color={pathname === '/data-sovereignty' ? 'var(--cyan)' : undefined} />
         <span>Data Sovereignty</span>
+      </button>
+
+      <button
+        className={`nav-item ${pathname === '/scoring' ? 'active' : ''}`}
+        onClick={() => navigate('/scoring')}
+      >
+        <Calculator size={14} color={pathname === '/scoring' ? 'var(--cyan)' : undefined} />
+        <span>Scoring</span>
       </button>
 
       <div className="nav-section-label">Other</div>

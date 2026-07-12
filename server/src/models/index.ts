@@ -528,6 +528,66 @@ export interface AIGovernanceStats {
   owaspThreatsMitigated:   number;
 }
 
+// ─── Scoring Methodology types ─────────────────────────────────────────────
+export interface DomainWeight {
+  domainId:       string;
+  domainName:     string;
+  weight:         number;   // percentage 0–100
+  currentScore:   number;   // 0–100
+  weightedScore:  number;   // weight/100 × currentScore
+  color:          string;
+  rationale:      string;
+}
+
+export interface ScoreBand {
+  label:       'Critical' | 'High' | 'Medium' | 'Low';
+  min:         number;
+  max:         number;
+  color:       string;
+  description: string;
+  action:      string;
+}
+
+export interface LikelihoodImpactCell {
+  likelihood: number;  // 1–5
+  impact:     number;  // 1–5
+  rawScore:   number;  // L × I
+  label:      'Critical' | 'High' | 'Medium' | 'Low';
+  color:      string;
+}
+
+export interface FrameworkRange {
+  ourScoreMin:    number;
+  ourScoreMax:    number;
+  frameworkLevel: string;
+  description:    string;
+}
+
+export interface FrameworkCalibration {
+  framework:  string;
+  version:    string;
+  ranges:     FrameworkRange[];
+}
+
+export interface ControlEffectivenessExample {
+  domain:              string;
+  inherentScore:       number;
+  controlEffectiveness: number;  // pct
+  residualScore:       number;
+}
+
+export interface ScoringMethodology {
+  compositeScore:               number;
+  compositeFormula:             string;
+  domainWeights:                DomainWeight[];
+  scoreBands:                   ScoreBand[];
+  likelihoodImpactMatrix:       LikelihoodImpactCell[];
+  controlEffectivenessFormula:  string;
+  controlExamples:              ControlEffectivenessExample[];
+  frameworkCalibrations:        FrameworkCalibration[];
+  lastUpdated:                  string;
+}
+
 // ─── Service view-model types ───────────────────────────────────────────────
 export interface RiskCounts {
   critical: number;
