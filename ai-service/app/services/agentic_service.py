@@ -56,6 +56,14 @@ class AgenticServiceImpl(IAgenticService):
         item.result = f"Action '{item.proposed_action}' executed successfully at {datetime.utcnow().isoformat()}"
         return item
 
+    def reset_to_pending(self, item_id: str) -> ApprovalQueueItem:
+        item = self._get_or_raise(item_id)
+        item.status = "pending"
+        item.resolved_by = None
+        item.resolved_at = None
+        item.result = None
+        return item
+
     def _get_or_raise(self, item_id: str) -> ApprovalQueueItem:
         item = self._queue.get(item_id)
         if not item:

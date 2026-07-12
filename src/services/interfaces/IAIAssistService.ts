@@ -9,4 +9,5 @@ export interface IAIAssistService {
   approveAction(id: string): Promise<AIApprovalItem>;
   rejectAction(id: string, reason: string): Promise<AIApprovalItem>;
   executeAction(id: string): Promise<AIApprovalItem>;
+  resetAction(id: string): Promise<AIApprovalItem>;
 }
