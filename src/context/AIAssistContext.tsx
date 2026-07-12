@@ -32,9 +32,10 @@ interface AIAssistContextValue {
   send:          (prompt: string, action: AIAction) => Promise<void>;
   approve:       (id: string) => Promise<void>;
   reject:        (id: string, reason: string) => Promise<void>;
-  execute:       (id: string) => Promise<void>;
-  clearChat:     () => void;
-  refreshQueue:  () => Promise<void>;
+  execute:          (id: string) => Promise<void>;
+  resetToPending:   (id: string) => Promise<void>;
+  clearChat:        () => void;
+  refreshQueue:     () => Promise<void>;
 }
 
 const AIAssistContext = createContext<AIAssistContextValue | null>(null);
@@ -139,13 +140,18 @@ export function AIAssistProvider({ children }: { children: ReactNode }) {
     setApprovalQueue(prev => prev.map(i => i.id === id ? updated : i));
   }, []);
 
+  const resetToPending = useCallback(async (id: string) => {
+    const updated = await AIAssistService.resetAction(id);
+    setApprovalQueue(prev => prev.map(i => i.id === id ? updated : i));
+  }, []);
+
   const clearChat = useCallback(() => setMessages([]), []);
 
   return (
     <AIAssistContext.Provider value={{
       open, toggle, close, mode, setMode,
       messages, sending, approvalQueue, status, pageContext, setPageContext,
-      send, approve, reject, execute, clearChat, refreshQueue,
+      send, approve, reject, execute, resetToPending, clearChat, refreshQueue,
     }}>
       {children}
     </AIAssistContext.Provider>

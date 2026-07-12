@@ -10,6 +10,7 @@ export interface IAIAssistRepository {
   approveItem(id: string): Promise<AIApprovalItem>;
   rejectItem(id: string, reason: string): Promise<AIApprovalItem>;
   executeItem(id: string): Promise<AIApprovalItem>;
+  resetItem(id: string): Promise<AIApprovalItem>;
 }
 
 async function aiGet<T>(path: string): Promise<T> {
@@ -35,6 +36,7 @@ class AIAssistRepositoryImpl implements IAIAssistRepository {
   approveItem(id: string)               { return aiPost<AIApprovalItem>(`/approval-queue/${id}/approve`); }
   rejectItem(id: string, reason: string){ return aiPost<AIApprovalItem>(`/approval-queue/${id}/reject`, { reason }); }
   executeItem(id: string)               { return aiPost<AIApprovalItem>(`/approval-queue/${id}/execute`); }
+  resetItem(id: string)                 { return aiPost<AIApprovalItem>(`/approval-queue/${id}/reset`); }
 }
 
 export const aiAssistRepository: IAIAssistRepository = new AIAssistRepositoryImpl();

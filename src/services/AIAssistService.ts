@@ -12,6 +12,7 @@ class AIAssistServiceImpl implements IAIAssistService {
   approveAction(id: string)              { return this.repo.approveItem(id); }
   rejectAction(id: string, reason: string) { return this.repo.rejectItem(id, reason); }
   executeAction(id: string)              { return this.repo.executeItem(id); }
+  resetAction(id: string)               { return this.repo.resetItem(id); }
 }
 
 export const AIAssistService: IAIAssistService = new AIAssistServiceImpl(aiAssistRepository);

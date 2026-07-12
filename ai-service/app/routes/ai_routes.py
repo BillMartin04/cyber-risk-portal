@@ -43,3 +43,8 @@ def reject_action(item_id: str, body: ApprovalActionRequest = ApprovalActionRequ
 @router.post("/approval-queue/{item_id}/execute", response_model=ApprovalQueueItem)
 async def execute_action(item_id: str):
     return await agentic_service.execute(item_id)
+
+
+@router.post("/approval-queue/{item_id}/reset", response_model=ApprovalQueueItem)
+def reset_action(item_id: str):
+    return agentic_service.reset_to_pending(item_id)

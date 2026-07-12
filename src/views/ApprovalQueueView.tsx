@@ -167,12 +167,13 @@ function RejectModal({
 // ─── Action Card ───────────────────────────────────────────────────────────
 
 function ActionCard({
-  item, onApprove, onReject, onExecute,
+  item, onApprove, onReject, onExecute, onReset,
 }: {
   item: AIApprovalItem;
   onApprove: (id: string) => void;
   onReject:  (item: AIApprovalItem) => void;
   onExecute: (id: string) => void;
+  onReset:   (id: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
   const sm = STATUS_META[item.status];
@@ -343,16 +344,43 @@ function ActionCard({
           )}
 
           {item.status === 'approved' && (
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button
+                onClick={() => onExecute(item.id)}
+                style={{
+                  padding: '8px 20px', borderRadius: 6, fontSize: 12, fontWeight: 600,
+                  background: 'rgba(0,212,255,0.12)', border: '1px solid rgba(0,212,255,0.35)',
+                  color: 'var(--cyan)', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: 6,
+                }}
+              >
+                <PlayCircle size={13} />Execute Action
+              </button>
+              <button
+                onClick={() => onReset(item.id)}
+                style={{
+                  padding: '8px 20px', borderRadius: 6, fontSize: 12, fontWeight: 600,
+                  background: 'rgba(255,214,0,0.08)', border: '1px solid rgba(255,214,0,0.3)',
+                  color: '#FFD600', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: 6,
+                }}
+              >
+                <RotateCcw size={13} />Reset to Pending
+              </button>
+            </div>
+          )}
+
+          {(item.status === 'rejected' || item.status === 'executed') && (
             <button
-              onClick={() => onExecute(item.id)}
+              onClick={() => onReset(item.id)}
               style={{
                 padding: '8px 20px', borderRadius: 6, fontSize: 12, fontWeight: 600,
-                background: 'rgba(0,212,255,0.12)', border: '1px solid rgba(0,212,255,0.35)',
-                color: 'var(--cyan)', cursor: 'pointer',
+                background: 'rgba(255,214,0,0.08)', border: '1px solid rgba(255,214,0,0.3)',
+                color: '#FFD600', cursor: 'pointer',
                 display: 'flex', alignItems: 'center', gap: 6,
               }}
             >
-              <PlayCircle size={13} />Execute Action
+              <RotateCcw size={13} />Reset to Pending
             </button>
           )}
         </div>
@@ -364,7 +392,7 @@ function ActionCard({
 // ─── Main View ─────────────────────────────────────────────────────────────
 
 export default function ApprovalQueueView() {
-  const { approvalQueue, approve, reject, execute, refreshQueue } = useAIAssist();
+  const { approvalQueue, approve, reject, execute, resetToPending, refreshQueue } = useAIAssist();
 
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [tierFilter,   setTierFilter]   = useState<TierFilter>('all');
@@ -407,6 +435,10 @@ export default function ApprovalQueueView() {
 
   const handleExecute = async (id: string) => {
     try { await execute(id); } catch { /* handled by context */ }
+  };
+
+  const handleReset = async (id: string) => {
+    try { await resetToPending(id); } catch { /* handled by context */ }
   };
 
   return (
@@ -519,6 +551,7 @@ export default function ApprovalQueueView() {
               onApprove={handleApprove}
               onReject={setRejectTarget}
               onExecute={handleExecute}
+              onReset={handleReset}
             />
           ))}
         </div>

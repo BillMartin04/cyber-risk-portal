@@ -29,3 +29,8 @@ class IAgenticService(ABC):
     async def execute(self, item_id: str) -> ApprovalQueueItem:
         """Execute an approved action."""
         ...
+
+    @abstractmethod
+    def reset_to_pending(self, item_id: str) -> ApprovalQueueItem:
+        """Reset any non-pending item back to pending (demo use)."""
+        ...
